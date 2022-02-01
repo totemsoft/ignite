@@ -1,0 +1,11 @@
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: "{{ deployment.name }}-{{ external.service.name }}"
+      labels:
+        app: "{{ deployment.name }}-{{ external.service.name }}"
+    spec:
+      type: ExternalName
+      externalName: {{ external.service.name }}
+    status:
+      loadBalancer: {}

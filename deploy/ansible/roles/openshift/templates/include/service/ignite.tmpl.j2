@@ -1,15 +1,12 @@
-apiVersion: v1
-kind: Template
-objects:
   - apiVersion: v1
     kind: Service
     metadata:
       # The name must be equal to TcpDiscoveryKubernetesIpFinder.serviceName
-      name: "{{ deployment_name }}-ignite"
+      name: "{{ deployment.name }}-ignite"
       # The name must be equal to TcpDiscoveryKubernetesIpFinder.namespace
       #namespace: {{ namespace }}
       labels:
-        app: "{{ deployment_name }}-ignite"
+        app: "{{ deployment.name }}-ignite"
     spec:
       type: LoadBalancer
       ports:
@@ -18,6 +15,6 @@ objects:
           targetPort: 8080
       selector:
         # Must be equal to the label set for pods.
-        app: "{{ deployment_name }}"
+        app: "{{ deployment.name }}"
     status:
       loadBalancer: {}
